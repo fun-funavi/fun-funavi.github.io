@@ -80,7 +80,9 @@ a:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-r
 }
 .wordmark .ch { display: inline-block; }
 .wordmark .fun { color: var(--green); }
-.lead { margin: 28px 0 0; max-width: 34em; font-size: clamp(18px, 2.2vw, 22px); font-weight: 800; line-height: 1.7; }
+.lead { margin: 28px 0 0; max-width: 34em; font-size: clamp(24px, 3.4vw, 34px); font-weight: 800; line-height: 1.5; }
+.lead .nw { display: inline-block; }
+.lead-sub { margin: 12px 0 0; max-width: 36em; font-size: clamp(16px, 1.9vw, 19px); font-weight: 500; line-height: 1.8; color: var(--muted); }
 .queue { --k: 1; margin: 56px 0 0; display: flex; align-items: flex-end; gap: clamp(10px, 2vw, 22px); border-bottom: 4px solid var(--navy); padding-bottom: 14px; }
 .queue .person { flex: none; border-radius: 50%; width: calc(var(--s) * var(--k)); height: calc(var(--s) * var(--k)); }
 .queue .p1 { --s: 44px; background: var(--red); }
@@ -163,6 +165,7 @@ footer .foot-brand .fun { color: #6FD3A4; }
   .wordmark .ch:nth-child(5) { animation-delay: .39s; }
   .wordmark .ch:nth-child(6) { animation-delay: .46s; }
   .lead { animation: rise .8s ease-out .6s both; }
+  .lead-sub { animation: rise .8s ease-out .8s both; }
   .legend { animation: rise .8s ease-out 1.6s both; }
 
   /* 列が入ってきて、その後は歩くように揺れる */
@@ -269,7 +272,8 @@ footer .foot-brand .fun { color: #6FD3A4; }
     <div class="floats" aria-hidden="true"><span class="f1"></span><span class="f2"></span><span class="f3"></span><span class="f4"></span><span class="f5"></span></div>
     <div class="wrap">
       <h1 class="wordmark" id="title" aria-label="FUNavi"><span class="ch fun" aria-hidden="true">F</span><span class="ch fun" aria-hidden="true">U</span><span class="ch fun" aria-hidden="true">N</span><span class="ch" aria-hidden="true">a</span><span class="ch" aria-hidden="true">v</span><span class="ch" aria-hidden="true">i</span></h1>
-      <p class="lead">生協食堂の混雑と待ち時間を、データで見える化しています。</p>
+      <p class="lead"><span class="nw">混雑を見える化して、</span><span class="nw">食堂をもっと便利に。</span></p>
+      <p class="lead-sub">生協食堂の混雑と待ち時間をデータで見える化し、空いている時間を選んで食堂に行けるようにします。</p>
 
       <div class="queue" role="img" aria-label="混雑を表す赤・黄の人の列が、空いていることを表す緑の人を先頭に丼へ向かって進む様子">
         <span class="person p1"></span>
