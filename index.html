@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FUNavi｜公立はこだて未来大学 生協食堂の混雑ナビ</title>
+<meta name="description" content="FUNaviは、公立はこだて未来大学の学生団体です。生協食堂の混雑状況と待ち時間をデータで見える化する活動をしています。">
+<meta property="og:title" content="FUNavi｜公立はこだて未来大学 生協食堂の混雑ナビ">
+<meta property="og:description" content="公立はこだて未来大学の生協食堂の混雑状況と待ち時間を見える化する学生団体です。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fun-funavi.github.io/">
+<meta property="og:image" content="https://fun-funavi.github.io/banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#FFF4E6">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;800&family=Nunito:wght@900&display=swap">
+<style>
+:root {
+  --cream: #FFF4E6;
+  --cream-deep: #FBE8D1;
+  --navy: #1E3A5F;
+  --muted: #4E5F74;
+  --green: #2F9A6A;
+  --yellow: #F2B33D;
+  --red: #C8432B;
+  --line: #EED9BE;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--navy);
+  font-family: 'M PLUS Rounded 1c', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.85;
+}
+a { color: var(--navy); text-underline-offset: 3px; }
+a:hover { color: var(--green); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+/* header */
+.site-header { padding: 20px 0; }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 22px; }
+.brand img { width: 36px; height: 36px; display: block; }
+.brand .fun { color: var(--green); }
+.header-link { font-weight: 800; font-size: 15px; }
+
+/* hero */
+.hero { padding: 56px 0 72px; }
+.wordmark {
+  font-family: 'Nunito', sans-serif; font-weight: 900;
+  font-size: clamp(88px, 17vw, 208px); line-height: .9; letter-spacing: -0.04em;
+  margin: 0;
+}
+.wordmark .fun { color: var(--green); }
+.lead {
+  margin: 28px 0 0; max-width: 34em;
+  font-size: clamp(18px, 2.2vw, 22px); font-weight: 800; line-height: 1.7;
+}
+.queue {
+  margin: 56px 0 0; display: flex; align-items: flex-end; gap: clamp(10px, 2vw, 22px);
+  border-bottom: 4px solid var(--navy); padding-bottom: 14px; overflow: hidden;
+}
+.queue { --k: 1; }
+.queue .person { flex: none; border-radius: 50%; width: calc(var(--s) * var(--k)); height: calc(var(--s) * var(--k)); }
+.queue .p1 { --s: 44px; background: var(--red); }
+.queue .p2 { --s: 52px; background: var(--red); }
+.queue .p3 { --s: 60px; background: var(--red); }
+.queue .p4 { --s: 68px; background: var(--yellow); }
+.queue .p5 { --s: 76px; background: var(--yellow); }
+.queue .p6 { --s: 84px; background: var(--green); }
+.queue .p7 { --s: 92px; background: var(--green); }
+.queue .bowl { margin-left: auto; width: clamp(110px, 18vw, 170px); flex: none; }
+.queue .bowl svg { display: block; width: 100%; height: auto; }
+.legend { margin: 14px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 14px; color: var(--muted); }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.legend i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .queue .person { animation: step-in 1.6s cubic-bezier(.2,.7,.2,1) both; }
+  .queue .p7 { animation-delay: .05s; }
+  .queue .p6 { animation-delay: .12s; }
+  .queue .p5 { animation-delay: .19s; }
+  .queue .p4 { animation-delay: .26s; }
+  .queue .p3 { animation-delay: .33s; }
+  .queue .p2 { animation-delay: .40s; }
+  .queue .p1 { animation-delay: .47s; }
+  .queue .steam { animation: steam 2.4s ease-in-out 1.4s infinite; }
+  .queue .steam + .steam { animation-delay: 1.8s; }
+}
+@keyframes step-in { from { transform: translateX(-120px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes steam { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-6px); opacity: .55; } }
+
+/* sections */
+section.block { padding: 72px 0; border-top: 2px solid var(--line); }
+.block .wrap { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 24px 64px; }
+.block h2 { margin: 0; font-size: 26px; font-weight: 800; line-height: 1.4; }
+.block p { margin: 0 0 1em; max-width: 36em; }
+.block p:last-child { margin-bottom: 0; }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; }
+.steps li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 18px; align-items: start; }
+.steps .num { width: 44px; height: 44px; border-radius: 50%; background: var(--navy); color: var(--cream); display: grid; place-items: center; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 20px; }
+.steps h3 { margin: 4px 0 4px; font-size: 19px; font-weight: 800; }
+.steps p { margin: 0; color: var(--muted); }
+
+.timeline { list-style: none; margin: 0; padding: 0; border-left: 3px solid var(--navy); }
+.timeline li { position: relative; padding: 0 0 24px 26px; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before { content: ""; position: absolute; left: -9px; top: 9px; width: 15px; height: 15px; border-radius: 50%; background: var(--cream); border: 3px solid var(--navy); }
+.timeline li.done::before { background: var(--navy); }
+.timeline .when { display: block; font-weight: 800; }
+.timeline .what { color: var(--muted); }
+
+.members { margin: 0; display: grid; gap: 18px; }
+.members div { display: grid; grid-template-columns: minmax(0, 9em) minmax(0, 1fr); gap: 4px 16px; padding-bottom: 18px; border-bottom: 2px solid var(--line); }
+.members div:last-child { border-bottom: 0; padding-bottom: 0; }
+.members dt { font-weight: 800; font-size: 19px; }
+.members dd { margin: 0; color: var(--muted); }
+
+.privacy { background: var(--cream-deep); border-radius: 18px; padding: 22px 26px; }
+.privacy p { color: var(--navy); }
+
+.contact a { font-weight: 800; }
+
+footer { padding: 40px 0 56px; border-top: 2px solid var(--line); font-size: 14px; color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  .hero { padding: 32px 0 56px; }
+  .queue { margin-top: 40px; --k: .38; gap: 8px; }
+  .queue .bowl { width: 90px; }
+  section.block { padding: 52px 0; }
+  .block .wrap { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .members div { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="FUNavi トップ">
+      <img src="icon.svg" alt="" width="36" height="36">
+      <span><span class="fun">FUN</span>avi</span>
+    </a>
+    <a class="header-link" href="https://github.com/fun-funavi">GitHub</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="title">
+    <div class="wrap">
+      <h1 class="wordmark" id="title"><span class="fun">FUN</span>avi</h1>
+      <p class="lead">公立はこだて未来大学の学生団体です。<br>生協食堂の混雑と待ち時間を、データで見える化しています。</p>
+
+      <div class="queue" role="img" aria-label="混雑を表す赤・黄の人の列が、空いていることを表す緑の人を先頭に丼へ向かって進む様子">
+        <span class="person p1"></span>
+        <span class="person p2"></span>
+        <span class="person p3"></span>
+        <span class="person p4"></span>
+        <span class="person p5"></span>
+        <span class="person p6"></span>
+        <span class="person p7"></span>
+        <span class="bowl" aria-hidden="true">
+          <svg viewBox="0 0 140 130">
+            <path class="steam" d="M58 6 C46 18 70 28 58 42" fill="none" stroke="#2F9A6A" stroke-width="8" stroke-linecap="round"/>
+            <path class="steam" d="M84 6 C72 18 96 28 84 42" fill="none" stroke="#2F9A6A" stroke-width="8" stroke-linecap="round"/>
+            <rect x="4" y="58" width="132" height="14" rx="7" fill="#1E3A5F"/>
+            <path d="M12 72 H128 A58 58 0 0 1 12 72 Z" fill="#1E3A5F"/>
+          </svg>
+        </span>
+      </div>
+      <ul class="legend" aria-label="色の意味">
+        <li><i style="background: var(--red)"></i>混んでいる</li>
+        <li><i style="background: var(--yellow)"></i>やや混んでいる</li>
+        <li><i style="background: var(--green)"></i>空いている</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="about">
+    <div class="wrap">
+      <h2 id="about">私たちについて</h2>
+      <div>
+        <p>未来大の生協食堂は、昼休みなど特定の時間帯に利用者が集中し、長い列ができます。並ぶ時間が長く感じられたり、列を見て食堂の利用をあきらめたりする人もいます。</p>
+        <p>食堂の広さや構造を変えるには、多くの費用と時間がかかります。そこで私たちは、混み具合と待ち時間を前もって知らせることで利用の集中を分散させ、一人ひとりの待ち時間を短くすることを目指しています。</p>
+        <p>この活動は、大学生協と協力しながら、学内の授業「高度ICT演習」の新しいテーマとして準備を進めています。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="how">
+    <div class="wrap">
+      <h2 id="how">活動内容</h2>
+      <ol class="steps">
+        <li>
+          <span class="num" aria-hidden="true">1</span>
+          <div>
+            <h3>並んでいる人数を記録する</h3>
+            <p>食堂の列を撮影し、時間帯ごとに並んでいる人数を記録します。</p>
+          </div>
+        </li>
+        <li>
+          <span class="num" aria-hidden="true">2</span>
+          <div>
+            <h3>混む理由を分析する</h3>
+            <p>メニュー、学事予定、大講義室や講堂の時間割、生協の利用者数と組み合わせて、いつ・なぜ混むのかを調べます。</p>
+          </div>
+        </li>
+        <li>
+          <span class="num" aria-hidden="true">3</span>
+          <div>
+            <h3>待ち時間を予測して知らせる</h3>
+            <p>分析の結果から待ち時間を予測し、空いている時間を選んで食堂に行けるよう表示します。将来は、出食数の推定で生協の仕入れも支援したいと考えています。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="status">
+    <div class="wrap">
+      <h2 id="status">これまでとこれから</h2>
+      <ol class="timeline">
+        <li class="done"><span class="when">2026年秋</span><span class="what">大学生協と打ち合わせを行い、食堂の混雑緩和をテーマに決定</span></li>
+        <li class="done"><span class="when">2026年11月</span><span class="what">撮影の許可取りと準備</span></li>
+        <li><span class="when">2026年11月末から約2週間</span><span class="what">食堂の列の撮影と分析</span></li>
+        <li><span class="when">2027年度</span><span class="what">高度ICT演習のテーマとして本格的に活動を開始（予定）</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="privacy-h">
+    <div class="wrap">
+      <h2 id="privacy-h">撮影データの取り扱い</h2>
+      <div class="privacy">
+        <p>撮影した映像には利用者の顔が映る可能性があります。撮影データは高度ICT演習の活動にのみ使用し、関係者以外がアクセスできない場所で管理します。保存期間は1年程度とし、期間が終わったら削除します。撮影は大学生協と大学の許可を得て行います。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="members-h">
+    <div class="wrap">
+      <h2 id="members-h">メンバー</h2>
+      <dl class="members">
+        <div><dt>永田 來煉</dt><dd>システム情報科学部 情報アーキテクチャ学科 3年（高度ICTコース）</dd></div>
+        <div><dt>坂本 晴紀</dt><dd>システム情報科学部 複雑系知能学科 3年</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="block contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 id="contact-h">お問い合わせ</h2>
+      <div>
+        <p>活動の資料やソースコードは GitHub で公開しています。</p>
+        <p><a href="https://github.com/fun-funavi">github.com/fun-funavi</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>FUNavi　公立はこだて未来大学 学生団体</span>
+    <span>協力：公立はこだて未来大学 大学生協</span>
+  </div>
+</footer>
+</body>
+</html>
